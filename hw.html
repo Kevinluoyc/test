@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<title>BMI值計算</title>
+<head>
+<script>
+    function idealweight(a){
+    var x=(a-100)*0.9;
+    return x;
+    }
+    
+    function bmi(a,b){
+    var bmi=b*1.0/((a*1.0/100)*(a*1.0/100));
+    return bmi;
+    }
+    
+    function Cal(form){
+    var a=eval(form.height.value);
+    var b=eval(form.weight.value);
+    var BMI=eval(form.BMI.value);
+    
+    form.IW.value=idealweight(a);
+    form.BMI.value=bmi(a,b);
+    disp_alert(bmi(a,b));
+    }
+    
+    function disp_alert(bmi){
+    if (bmi < 18.5)
+    {
+    document.getElementById("cueBox").style.display="block"
+    document.getElementById("cue").innerHTML="你的體重太輕,要多吃點喲!"
+    // alert("你的體重太輕,要多吃點喲!");
+    }
+    else if (bmi >= 18.5 && bmi < 25)
+    {
+    ////////////////////////////////
+    // alert("親,你的體重正常,要繼續保持喲!"); //
+    ////////////////////////////////
+    document.getElementById("cueBox").style.display="block"
+    document.getElementById("cue").innerHTML="親,你的體重正常,要繼續保持喲!";
+    }
+    else if (bmi >= 25 && bmi< 30)
+    {
+    document.getElementById("cueBox").style.display="block";
+    document.getElementById("cue").innerHTML="親,您的體重過重,要減肥了!";
+    //////////////////////////////
+    // alert("親,您的體重過重,要減肥了!"); //
+    //////////////////////////////
+    }
+    else
+    {
+    document.getElementById("cueBox").style.display="block";
+    document.getElementById("cue").innerHTML="親,你確實要減肥了!";
+    //////////////////////////
+    // alert("親,你確實要減肥了!"); //
+    //////////////////////////
+    }
+    }
+    </script>
+    </head>
+<body>
+    <fieldset>
+        <legend>基本資料</legend>
+        <label>姓名:<input type="text"id="name"name="name"required></label>
+        <label>年齡:<input type="text"name="age"/></label>
+        <label>連絡電話:<input type="text"name="telephone"/></label>
+        <p>性別:
+            <input id="male"type="radio"name="sex"value="male">
+            <label for="male">男</label>
+            <input id="female"type="radio"name="sex"value="f">
+            <label for="male">女</label>
+        </p>
+        <form method=post class="bmi-box">
+            <div class="msg clearfix">
+            <p class="tit">你的身高(cm):</p><input type="text" name="height">
+            </div>
+            <div class="msg clearfix">
+            <p class="tit">你的體重(kg):</p><input type="text" name="weight">
+            </div>
+            <div class="clearfix">
+            <p class="tit"></p>
+            <input type="button" class="button" value="開始計算" onclick="Cal(this.form)">
+            </div>
+            <div class="cueBox" id="cueBox" style="display:none;">
+            <div id="cue"></div>
+            </div>
+            <div class="msg clearfix">
+            <p class="tit">你的理想體重(kg):</p><input type="text" name="IW">
+            </div>
+            <div class="msg clearfix">
+            <p class="tit">您的BMI值:</p><input type="text" name="BMI">
+            </div>
+            </form>
+</body>
